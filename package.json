@@ -1,0 +1,33 @@
+{
+  "name": "uniprof",
+  "version": "1.0.0",
+  "description": "Front end and backend with js. No Framework on UI, express, mongoose, webpack and ready to go to heroku. ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev nodemon backend/index.js",
+    "start": "cross-env NODE_ENV=prod node backend/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs-extra": "^8.1.0",
+    "mongoose": "^5.7.5",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "nodemon": "^1.19.4",
+    "style-loader": "^1.0.0",
+    "timeago.js": "^4.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  }
+}
