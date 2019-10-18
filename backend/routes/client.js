@@ -5,45 +5,58 @@ const router = Router()
 const clientModel = require('../model/Client')
 
 router.get('/', async (req, res) => {
-    const clients = await clientModel.find();
-    res.json(clients);
+    try {
+        const clients = await clientModel.find();
+        buildRespose(res, clients);
+    } catch (err) {
+        buildRespose(res, null, err);
+    }
 })
 
 router.get('/:id', async (req, res) => {
-    const client = await clientModel.findById(req.params.id);
-    res.json(client);
+    try {
+        const client = await clientModel.findById(req.params.id);
+        buildRespose(res, client);
+    } catch (err) {
+        buildRespose(res, null, err);
+    }
 })
 
 router.post('/', async (req, res) => {
     try {
         const { name, email } = req.body;
-
         const client = new clientModel({ name, email });
-
         await client.save();
 
-        res.json(client);
+        buildRespose(res, client);
     } catch (err) {
-        res.status(500);
-        res.json(err);
+        buildRespose(res, null, err);
     }
 })
+
+router.put('/:id', async (req, res) => {
+    
+});
 
 router.delete('/:id', async (req, res) => {
-    var result;
-
     try {
-        console.log(req.params.id);
-
         const doc = await clientModel.findByIdAndDelete(req.params.id);
-
-        res.status(doc ? 200 : 404);
-        const message = doc ? "Deleted" : "Not Found";
-        res.send({message})
+        buildRespose(res, doc);
     } catch (err) {
-        res.status(500);
-        res.json(err);
+        buildRespose(res, null, err);
     }
 })
+
+
+function buildRespose(res, result, err) {
+    if (err) {
+        res.status(500);
+        res.json(err);
+    } else {
+        res.status(200);
+        res.json(result);
+    }
+}
+
 
 module.exports = router;
