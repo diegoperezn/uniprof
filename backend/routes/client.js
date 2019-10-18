@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-    
+    res.status(500).json({ message: 'Not Implemeted' })
 });
 
 router.delete('/:id', async (req, res) => {
